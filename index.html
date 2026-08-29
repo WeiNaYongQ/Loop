@@ -94,7 +94,7 @@
           <span class="battery-note" id="batteryNote"></span>
         </div>
 
-        <ul class="habit-list" id="habitList"></ul>
+        <ul class="habit-list" id="habits-list"></ul>
         <button id="addBtn" class="add-row">+ add a tiny habit</button>
         <button id="archiveBtn" class="archive-toggle" hidden>🗄 archive (0)</button>
         <div class="brain-dump">
@@ -124,7 +124,7 @@
                 <circle class="bg" cx="60" cy="60" r="54"/>
                 <circle class="fg" id="tRing" cx="60" cy="60" r="54"/>
               </svg>
-              <span class="timer-digits" id="tDigits">15:00</span>
+              <span class="timer-digits" id="timer-display">15:00</span>
             </div>
             <div class="timer-presets">
               <button class="preset" data-min="10">10 min</button>
@@ -141,7 +141,7 @@
 
         <section class="panel week">
           <h2>🗓️ Last 7 days</h2>
-          <div class="heat" id="heat"></div>
+          <div class="heat" id="heatmap"></div>
           <a class="btn mini report-btn" href="stats.html">📊 weekly report</a>
         </section>
 

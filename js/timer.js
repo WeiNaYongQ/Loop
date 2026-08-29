@@ -59,7 +59,7 @@ const TimerPanel = (() => {
   function paint(){
     const m = String(Math.floor(left / 60)).padStart(2,'0');
     const s = String(left % 60).padStart(2,'0');
-    document.getElementById('tDigits').textContent = `${m}:${s}`;
+    document.getElementById('timer-display').textContent = `${m}:${s}`;
     document.getElementById('tRing').style.strokeDashoffset = C * (1 - left / dur);
   }
 

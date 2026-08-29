@@ -318,7 +318,7 @@
   gap: 0.7rem;
 }
 
-.habit {
+.habit-strip {
   display: flex;
   align-items: center;
   gap: 0.9rem;
@@ -331,23 +331,23 @@
   transition: transform 0.16s, border-color 0.16s, background 0.3s;
 }
 
-.habit:hover {
+.habit-strip:hover {
   transform: translateX(3px);
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-.habit.is-done {
+.habit-strip.is-done {
   background: rgba(52, 213, 154, 0.08);
   border-color: rgba(52, 213, 154, 0.3);
 }
 
-.habit.is-done .habit-name {
+.habit-strip.is-done .habit-name {
   text-decoration: line-through;
   text-decoration-thickness: 2px;
   opacity: 0.6;
 }
 
-.check {
+.habit-check {
   width: 40px;
   height: 40px;
   flex: none;
@@ -361,11 +361,11 @@
   color: var(--gray);
 }
 
-.habit:hover .check {
+.habit-strip:hover .habit-check {
   border-color: var(--mint);
 }
 
-.habit.is-done .check {
+.habit-strip.is-done .habit-check {
   background: var(--mint);
   border-color: var(--mint);
   color: var(--void);
@@ -434,8 +434,8 @@
   color: var(--gray);
 }
 
-.habit:hover .del,
-.habit:focus-within .del {
+.habit-strip:hover .del,
+.habit-strip:focus-within .del {
   opacity: 1;
 }
 
@@ -577,7 +577,7 @@
   gap: 1rem;
 }
 
-.timer-ring-wrap {
+.timer-orb {
   position: relative;
   width: 170px;
   height: 170px;
@@ -664,7 +664,7 @@
 }
 
 /* --- 10 · 7-Day Heatmap --- */
-.heat {
+.heatmap {
   display: grid;
   gap: 0.5rem;
 }
