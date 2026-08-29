@@ -1,7 +1,7 @@
-/* ═══════════ sw.js — offline cache (v0.8: added favicon.ico + proModal fix) ═══════════
+/* ═══════════ sw.js — offline cache (v0.9: added reminders system) ═══════════
    DEV RULE: bump CACHE whenever files change. */
 
-const CACHE = 'loop-v7';
+const CACHE = 'loop-v8';
 
 const ASSETS = [
   './', './index.html', './stats.html',
@@ -9,6 +9,7 @@ const ASSETS = [
   './css/mobile.css', './css/pro.css',
   './js/storage.js', './js/habits.js', './js/fx.js', './js/timer.js', './js/extras.js',
   './js/app.js', './js/stats.js', './js/report.js', './js/settings.js', './js/pro.js', './js/pwa.js',
+  './js/reminders.js', './js/reminder-ui.js',
   './manifest.json', './icons/icon.svg', './favicon.ico'
 ];
 
