@@ -1,66 +1,224 @@
-/* ═══════════ css/theme.css — calm pass · calm mode · night mode · data bar ═══════════
-   Loads LAST, so it can override everything above it without touching old files. */
+/* ═══════════ css/theme.css — NEON DESIGN SYSTEM ═══════════
+   Dark, calm, premium, developer-first.
+   Colors: Black (#000000), Near-black (#111315), Mint (#34D59A), Pale mint (#E4F1EB)
+   Typography: Inter (UI), Geist Mono (numbers/stats)
+*/
 
-/* --- 00 · calm pass: turn the default volume down one notch --- */
-body::before{ opacity:.045 }                 /* quieter dot grid */
-.ticker-track{ animation-duration:42s }      /* slower, gentler scroll */
-.ambient .sticker{ opacity:.7 }
+/* --- 00 · Core Design Tokens --- */
+:root {
+  /* Colors */
+  --void: #000000;
+  --near-void: #111315;
+  --mint: #34D59A;
+  --pale-mint: #E4F1EB;
+  --white: #FFFFFF;
+  --gray: #94979E;
+  --gray-dim: rgba(148, 151, 158, 0.4);
+  
+  /* Legacy color references (for compatibility) */
+  --paper: var(--void);
+  --card: var(--near-void);
+  --ink: var(--white);
+  --ink-60: rgba(255, 255, 255, 0.6);
+  --ink-12: rgba(255, 255, 255, 0.12);
+  --sun: var(--mint);
+  --coral: var(--mint);
+  --tint: var(--mint);
+  --sky: var(--mint);
+  --grape: #B084F0;
+  
+  /* Typography */
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', 'Space Mono', monospace;
+  
+  /* Shapes */
+  --r-pill: 9999px;
+  --r-card: 4px;
+  --r-sm: 4px;
+  --r: 4px;
+  
+  /* Shadows - minimal, flat design */
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-lg: none;
+  
+  /* Borders */
+  --line: 1px solid rgba(255, 255, 255, 0.15);
+  --line-dashed: 1px dashed rgba(255, 255, 255, 0.15);
+}
 
-/* --- 01 · 🌿 calm mode --- */
-body.calm .ambient{ display:none }                       /* no floating stickers */
-body.calm .ticker-track{ animation:none }                /* ticker stops moving */
+/* --- 01 · Base Overrides --- */
+body {
+  background: var(--void);
+  color: var(--white);
+}
+
+body::before {
+  opacity: 0.03;
+}
+
+.ticker {
+  background: var(--near-void);
+  border-bottom: var(--line);
+}
+
+.ticker-track {
+  animation-duration: 60s;
+}
+
+.ambient .sticker {
+  opacity: 0.5;
+}
+
+/* --- 02 · Calm Mode --- */
+body.calm .ambient { display: none; }
+body.calm .ticker-track { animation: none; }
 body.calm .spark,
 body.calm .flame.hot,
-body.calm .spot-emoji{ animation:none }                  /* no wiggles */
-body.calm .rule:hover{ transform:none }
-body.calm .habit:hover{ transform:none; box-shadow:var(--shadow-sm) }
-body.calm #calmBtn{ background:var(--mint) }
+body.calm .spot-emoji { animation: none; }
+body.calm .rule:hover { transform: none; }
+body.calm .habit:hover { transform: none; box-shadow: var(--shadow-sm); }
+body.calm #calmBtn { background: var(--mint); color: var(--void); }
 
-/* --- 02 · 🌙 night mode (token swap does 90% of the work) --- */
-[data-theme="night"]{
-  --paper:#17141F;
-  --card:#211D2E;
-  --ink:#f1ecdf;
-  --ink-60:rgba(241,236,223,.62);
-  --ink-12:rgba(241,236,223,.14);
+/* --- 03 · Night/Dusk Theme Support --- */
+[data-theme="night"],
+[data-theme="dusk"] {
+  color-scheme: dark;
 }
-[data-theme="night"] body::after{ opacity:.5 }           /* dim the glows */
-[data-theme="night"] .ticker{ background:#0D0B12 }       /* keep ticker dark */
-[data-theme="night"] footer{ background:#0D0B12; color:#F1ECDF }
 
-/* --- 03 · footer data bar --- */
-.data-bar{
-  width:100%; display:flex; gap:.6rem; flex-wrap:wrap;
-  margin-top:1.2rem; padding-top:1.1rem;
-  border-top:2px dashed rgba(128,128,128,.45);
+/* --- 04 · Dialog Styling --- */
+dialog {
+  color: var(--white);
+  background: var(--near-void);
+  border: var(--line);
+  border-radius: var(--r-card);
+  box-shadow: none;
 }
-.btn.mini{ font-size:.8rem; padding:.4rem .95rem; background:var(--card); color:var(--ink) }
-.btn.mini.danger{ background:var(--coral); color:#fff } 
-/* --- 04 · BUGFIX: dialog text blending in on dark ---
-   Browser UA styles hardcode `color: black` on <dialog>, which beats
-   inheritance. Our declaration beats the UA style, so this wins. */
-dialog{ color:var(--ink) }
-#hName::placeholder{ color:var(--ink-60) }
 
-/* also make NATIVE controls (the select dropdown popup, scrollbars,
-   confirm() boxes) follow the theme instead of staying white */
-[data-theme="night"]{ color-scheme: dark }
-/* --- 05 · v0.3 — notes · edit · archive · report button --- */
-textarea{ font:inherit; color:inherit }
-textarea#hNote{ width:100%; border:2.5px solid var(--ink); border-radius:10px; padding:.6rem .8rem; background:var(--paper); resize:vertical }
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
 
-.edit{ width:30px; height:30px; flex:none; border:2px solid var(--ink); border-radius:8px; background:var(--paper); font-size:.85rem; opacity:0; transition:opacity .15s, background .15s }
-.habit:hover .edit, .habit:focus-within .edit{ opacity:1 }
-.edit:hover{ background:var(--sun) }
-@media (hover:none){ .del, .edit{ opacity:1 } }   /* touchscreens have no hover */
+#hName::placeholder {
+  color: var(--gray);
+}
 
-.note-chip{ font-size:.95rem; cursor:help; flex:none }
+/* --- 05 · Form Elements --- */
+textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--near-void);
+  border: var(--line);
+}
 
-.archive-toggle{ margin-top:.7rem; font-family:var(--mono); font-size:.78rem; border:2px dashed var(--ink); border-radius:999px; padding:.35rem .95rem }
-.archive-toggle:hover{ background:rgba(156,123,255,.25) }
-.archive-tray{ margin-top:.7rem; display:grid; gap:.5rem; border:2.5px dashed var(--ink); border-radius:var(--r-sm); padding:.8rem; background:rgba(156,123,255,.1) }
-.arch-row{ display:flex; align-items:center; gap:.6rem }
-.arch-name{ flex:1; font-size:.9rem; opacity:.75; text-decoration:line-through }
-.arch-row .btn.mini{ box-shadow:2px 2px 0 var(--ink) }
+textarea#hNote {
+  width: 100%;
+  border-radius: var(--r-sm);
+  padding: 0.7rem 0.9rem;
+  resize: vertical;
+}
 
-.report-btn{ margin-top:1rem; width:100% }
+/* --- 06 · Buttons --- */
+.edit, .del {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border: var(--line);
+  border-radius: var(--r-sm);
+  background: var(--near-void);
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.habit:hover .edit, .habit:focus-within .edit,
+.habit:hover .del, .habit:focus-within .del {
+  opacity: 1;
+}
+
+.edit:hover { background: var(--mint); color: var(--void); }
+.del:hover { background: #FF6157; color: var(--white); }
+
+@media (hover: none) {
+  .del, .edit { opacity: 1; }
+}
+
+.note-chip {
+  font-size: 0.9rem;
+  cursor: help;
+  flex: none;
+  color: var(--gray);
+}
+
+.archive-toggle {
+  margin-top: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  border: var(--line-dashed);
+  border-radius: var(--r-pill);
+  padding: 0.4rem 1rem;
+  color: var(--gray);
+}
+
+.archive-toggle:hover {
+  background: rgba(176, 132, 240, 0.15);
+}
+
+.archive-tray {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+  border: var(--line-dashed);
+  border-radius: var(--r-sm);
+  padding: 0.9rem;
+  background: rgba(176, 132, 240, 0.08);
+}
+
+.arch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.arch-name {
+  flex: 1;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.arch-row .btn.mini {
+  box-shadow: none;
+  border: var(--line);
+}
+
+.report-btn {
+  margin-top: 1rem;
+  width: 100%;
+  border-radius: var(--r-pill);
+}
+
+/* --- 07 · Data Bar --- */
+.data-bar {
+  width: 100%;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: var(--line-dashed);
+}
+
+.btn.mini {
+  font-size: 0.75rem;
+  padding: 0.45rem 1rem;
+  background: var(--near-void);
+  color: var(--white);
+  border: var(--line);
+  border-radius: var(--r-pill);
+}
+
+.btn.mini.danger {
+  background: rgba(255, 97, 87, 0.15);
+  color: #FF6157;
+}
