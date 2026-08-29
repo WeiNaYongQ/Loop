@@ -59,6 +59,7 @@
         <button id="calmBtn" class="icon-btn" aria-pressed="false" title="calm mode — hides motion & decorations">🌿</button>
         <button id="themeBtn" class="icon-btn" title="switch day / night">🌙</button>
         <button id="soundBtn" class="icon-btn" aria-pressed="true" title="toggle sounds">🔊</button>
+        <button id="reminderBtn" class="icon-btn" aria-pressed="false" title="set reminders">🔔</button>
     </div>
   </header>
 
@@ -270,6 +271,35 @@
     <menu><button type="button" class="btn" id="proClose">close</button></menu>
   </dialog>
 
+  <!-- Reminder Modal -->
+  <dialog id="reminderModal">
+    <h3>🔔 Reminders</h3>
+    <p class="hint">Get notified to check your habits at specific times.</p>
+    
+    <div class="reminder-toggle-row">
+      <label class="toggle-label">
+        <input type="checkbox" id="reminderEnabled">
+        <span class="toggle-text">Enable reminders</span>
+      </label>
+    </div>
+    
+    <div class="reminder-times-section">
+      <label class="field-label" for="reminderTimes">Reminder times</label>
+      <p class="hint">Add times when you want to be reminded (24-hour format)</p>
+      <div class="time-input-row">
+        <input type="time" id="newTimeInput" step="300">
+        <button class="btn btn-primary" id="addTimeBtn">+ Add</button>
+      </div>
+      <div class="time-list" id="timeList"></div>
+    </div>
+    
+    <div class="reminder-test-row">
+      <button class="btn" id="testNotifBtn">🧪 Test notification</button>
+    </div>
+    
+    <menu><button type="button" class="btn" id="reminderClose">close</button></menu>
+  </dialog>
+
   <!-- order matters: fx.js before extras.js and app.js -->
   <script src="js/storage.js"></script>
   <script src="js/habits.js"></script>
@@ -279,6 +309,8 @@
   <script src="js/app.js"></script>
   <script src="js/settings.js"></script>   <!-- after app.js — order matters -->
   <script src="js/pro.js"></script>   <!-- after settings.js -->
+  <script src="js/reminders.js"></script>   <!-- reminders system -->
+  <script src="js/reminder-ui.js"></script>   <!-- reminder modal UI -->
   <script src="js/pwa.js"></script>
 </body>
 </html>

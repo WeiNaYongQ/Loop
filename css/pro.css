@@ -48,3 +48,21 @@
 [data-theme="dusk"] body::after{ opacity:.5 }
 [data-theme="dusk"] .ticker{ background:#161A30 }
 [data-theme="dusk"] footer{ background:#161A30; color:#F5E9CF }
+
+/* ═══════════ Reminders Modal Styles ═══════════ */
+.reminder-toggle-row{ margin:1rem 0 }
+.toggle-label{ display:flex; align-items:center; gap:.8rem; cursor:pointer }
+.toggle-label input[type="checkbox"]{ width:22px; height:22px; accent-color:var(--coral) }
+.toggle-text{ font-size:1rem; font-weight:600 }
+
+.reminder-times-section{ margin:1.2rem 0 }
+.time-input-row{ display:flex; gap:.6rem; margin:.6rem 0 }
+#newTimeInput{ flex:1; border:2.5px solid var(--ink); border-radius:10px; padding:.6rem .8rem; background:var(--paper); font-family:var(--body); font-size:.95rem }
+
+.time-list{ display:grid; gap:.5rem; margin-top:.8rem; max-height:180px; overflow-y:auto }
+.time-item{ display:flex; justify-content:space-between; align-items:center; border:2px solid var(--ink); border-radius:8px; padding:.5rem .7rem; background:var(--paper) }
+.time-item span{ font-family:var(--mono); font-size:.9rem }
+.remove-time{ width:32px; height:32px; border:2px solid var(--ink); border-radius:8px; background:var(--coral); color:var(--ink); font-size:1rem; display:grid; place-items:center; cursor:pointer; transition:transform .12s }
+.remove-time:hover{ transform:scale(1.1) }
+
+.reminder-test-row{ margin:1rem 0; padding-top:1rem; border-top:2px dashed var(--ink-12) }
