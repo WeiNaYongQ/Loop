@@ -82,7 +82,7 @@ const SidePanels = (() => {
     document.getElementById('ctaBtn').addEventListener('click', () => {
       document.getElementById('app').scrollIntoView({ behavior:'smooth' });
       setTimeout(() => {
-        const first = document.querySelector('.habit:not(.is-done)') || document.querySelector('.habit');
+        const first = document.querySelector('.habit-strip:not(.is-done)') || document.querySelector('.habit-strip');
         if(first){ first.classList.add('pulse-me'); setTimeout(() => first.classList.remove('pulse-me'), 2200); }
       }, 600);
     });
