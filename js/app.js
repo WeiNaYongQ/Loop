@@ -19,8 +19,8 @@ function habitRow(h){
     `<span class="sdot ${h.done[k] ? 'on' : ''}" title="${k}"></span>`
   ).join('');
 
-  return `<li class="habit ${done ? 'is-done' : ''}" data-id="${h.id}" style="--tint:${COLORS[h.color] || COLORS.sun}">
-    <button class="check" aria-label="${done ? 'uncheck' : 'check'} ${escapeHtml(h.name)}">${done ? h.emoji : ''}</button>
+  return `<li class="habit-strip ${done ? 'is-done' : ''}" data-id="${h.id}" style="--tint:${COLORS[h.color] || COLORS.sun}">
+    <button class="habit-check" aria-label="${done ? 'uncheck' : 'check'} ${escapeHtml(h.name)}">${done ? h.emoji : ''}</button>
     <div class="habit-meta">
       <span class="habit-name">${escapeHtml(h.name)}</span>
       <span class="habit-sub">${FREQ_LABEL[h.freq] || 'every day'}</span>
@@ -34,7 +34,7 @@ function habitRow(h){
 }
 
 function renderBoard(){
-  document.getElementById('habitList').innerHTML = activeHabits().map(habitRow).join('');
+  document.getElementById('habits-list').innerHTML = activeHabits().map(habitRow).join('');
   updateProgress();
 }
 function refreshBoard(){ renderBoard(); }
@@ -67,7 +67,7 @@ function renderHeat(){
       `<div class="heat-cell ${h.done[k] ? 'on' : ''}" style="--tint:${COLORS[h.color]}" title="${k}"></div>`).join('');
     return `<div class="heat-row"><span class="heat-label">${h.emoji} ${escapeHtml(h.name)}</span>${cells}</div>`;
   }).join('');
-  document.getElementById('heat').innerHTML = html;
+  document.getElementById('heatmap').innerHTML = html;
 }
 
 /* ---------- archive tray ---------- */
@@ -106,8 +106,8 @@ function wireArchive(){
 
 /* ---------- list events ---------- */
 function wireList(){
-  document.getElementById('habitList').addEventListener('click', e => {
-    const row = e.target.closest('.habit');
+  document.getElementById('habits-list').addEventListener('click', e => {
+    const row = e.target.closest('.habit-strip');
     if(!row) return;
     const id = row.dataset.id;
 
@@ -120,10 +120,10 @@ function wireList(){
       openComposer(state.habits.find(x => x.id === id));
       return;
     }
-    if(e.target.closest('.check') || e.target.closest('.habit-meta')){
+    if(e.target.closest('.habit-check') || e.target.closest('.habit-meta')){
       const nowDone = toggleHabit(id);
       if(nowDone){
-        const c = row.querySelector('.check').getBoundingClientRect();
+        const c = row.querySelector('.habit-check').getBoundingClientRect();
         burst(c.left + c.width / 2, c.top + c.height / 2);
         blip(700);
       } else blip(300);
