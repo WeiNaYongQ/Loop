@@ -1,0 +1,70 @@
+/* ═══════════ css/base.css — tokens · reset · typography · ambience ═══════════ */
+
+:root{
+  --paper:#FFF9EC;      --card:#FFFDF6;
+  --ink:#272130;        --ink-60:rgba(39,33,48,.6);  --ink-12:rgba(39,33,48,.12);
+  --sun:#FFC933;  --coral:#FF6157;  --mint:#1FBE9C;
+  --sky:#4FA6FF;  --grape:#9C7BFF;  --pink:#FF8FC0;
+  --line:3px solid var(--ink);
+  --shadow:7px 7px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+  --r:18px; --r-sm:12px;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, sans-serif;
+  --mono:"Space Mono", monospace;
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0 }
+html{ scroll-behavior:smooth }
+
+body{
+  font-family:var(--body); background:var(--paper); color:var(--ink);
+  line-height:1.55; overflow-x:hidden; min-height:100vh;
+}
+
+/* layered ambient background: dot grid + warm glows */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:radial-gradient(var(--ink) 1.1px, transparent 1.1px);
+  background-size:26px 26px; opacity:.06;
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(620px 420px at 12% -5%, rgba(255,201,51,.30), transparent 70%),
+    radial-gradient(540px 400px at 102% 8%, rgba(79,166,255,.14), transparent 70%);
+}
+
+img,svg{ display:block; max-width:100% }
+button,input,select{ font:inherit; color:inherit }
+button{ cursor:pointer; background:none; border:none }
+a{ color:inherit; text-decoration:none }
+::selection{ background:var(--sun); color:var(--ink) }
+:focus-visible{ outline:3px dashed var(--coral); outline-offset:3px; border-radius:4px }
+
+.container{ width:min(1200px, 92vw); margin-inline:auto; position:relative; z-index:2 }
+h1,h2,h3,.display{ font-family:var(--display); line-height:1.05; letter-spacing:-.01em }
+
+/* floating stickers */
+.ambient{ position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden }
+.sticker{ position:absolute; opacity:.9; animation:float 7s ease-in-out infinite alternate }
+.st1{ top:17%; left:3.5% }
+.st2{ top:11%; right:4.5%; animation-delay:-2s }
+.st3{ bottom:27%; left:5%; animation-delay:-4s }
+.st4{ bottom:10%; right:7%; animation-delay:-1s }
+.st5{ top:46%; right:2.5%; animation-delay:-3s }
+.big-ring{ position:absolute; border:3px solid var(--ink); border-radius:50%; opacity:.05 }
+.r-a{ width:520px; height:520px; top:-180px; right:-160px }
+.r-b{ width:380px; height:380px; bottom:-160px; left:-140px }
+@keyframes float{ from{ transform:translateY(-10px) rotate(-6deg) } to{ transform:translateY(14px) rotate(7deg) } }
+
+.pill{
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.08em;
+  border:2px solid var(--ink); border-radius:999px; padding:.15rem .55rem;
+  background:var(--card); vertical-align:middle;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important }
+  html{ scroll-behavior:auto }
+}

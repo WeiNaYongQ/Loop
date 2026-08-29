@@ -1,0 +1,66 @@
+/* ═══════════ css/theme.css — calm pass · calm mode · night mode · data bar ═══════════
+   Loads LAST, so it can override everything above it without touching old files. */
+
+/* --- 00 · calm pass: turn the default volume down one notch --- */
+body::before{ opacity:.045 }                 /* quieter dot grid */
+.ticker-track{ animation-duration:42s }      /* slower, gentler scroll */
+.ambient .sticker{ opacity:.7 }
+
+/* --- 01 · 🌿 calm mode --- */
+body.calm .ambient{ display:none }                       /* no floating stickers */
+body.calm .ticker-track{ animation:none }                /* ticker stops moving */
+body.calm .spark,
+body.calm .flame.hot,
+body.calm .spot-emoji{ animation:none }                  /* no wiggles */
+body.calm .rule:hover{ transform:none }
+body.calm .habit:hover{ transform:none; box-shadow:var(--shadow-sm) }
+body.calm #calmBtn{ background:var(--mint) }
+
+/* --- 02 · 🌙 night mode (token swap does 90% of the work) --- */
+[data-theme="night"]{
+  --paper:#17141F;
+  --card:#211D2E;
+  --ink:#f1ecdf;
+  --ink-60:rgba(241,236,223,.62);
+  --ink-12:rgba(241,236,223,.14);
+}
+[data-theme="night"] body::after{ opacity:.5 }           /* dim the glows */
+[data-theme="night"] .ticker{ background:#0D0B12 }       /* keep ticker dark */
+[data-theme="night"] footer{ background:#0D0B12; color:#F1ECDF }
+
+/* --- 03 · footer data bar --- */
+.data-bar{
+  width:100%; display:flex; gap:.6rem; flex-wrap:wrap;
+  margin-top:1.2rem; padding-top:1.1rem;
+  border-top:2px dashed rgba(128,128,128,.45);
+}
+.btn.mini{ font-size:.8rem; padding:.4rem .95rem; background:var(--card); color:var(--ink) }
+.btn.mini.danger{ background:var(--coral); color:#fff } 
+/* --- 04 · BUGFIX: dialog text blending in on dark ---
+   Browser UA styles hardcode `color: black` on <dialog>, which beats
+   inheritance. Our declaration beats the UA style, so this wins. */
+dialog{ color:var(--ink) }
+#hName::placeholder{ color:var(--ink-60) }
+
+/* also make NATIVE controls (the select dropdown popup, scrollbars,
+   confirm() boxes) follow the theme instead of staying white */
+[data-theme="night"]{ color-scheme: dark }
+/* --- 05 · v0.3 — notes · edit · archive · report button --- */
+textarea{ font:inherit; color:inherit }
+textarea#hNote{ width:100%; border:2.5px solid var(--ink); border-radius:10px; padding:.6rem .8rem; background:var(--paper); resize:vertical }
+
+.edit{ width:30px; height:30px; flex:none; border:2px solid var(--ink); border-radius:8px; background:var(--paper); font-size:.85rem; opacity:0; transition:opacity .15s, background .15s }
+.habit:hover .edit, .habit:focus-within .edit{ opacity:1 }
+.edit:hover{ background:var(--sun) }
+@media (hover:none){ .del, .edit{ opacity:1 } }   /* touchscreens have no hover */
+
+.note-chip{ font-size:.95rem; cursor:help; flex:none }
+
+.archive-toggle{ margin-top:.7rem; font-family:var(--mono); font-size:.78rem; border:2px dashed var(--ink); border-radius:999px; padding:.35rem .95rem }
+.archive-toggle:hover{ background:rgba(156,123,255,.25) }
+.archive-tray{ margin-top:.7rem; display:grid; gap:.5rem; border:2.5px dashed var(--ink); border-radius:var(--r-sm); padding:.8rem; background:rgba(156,123,255,.1) }
+.arch-row{ display:flex; align-items:center; gap:.6rem }
+.arch-name{ flex:1; font-size:.9rem; opacity:.75; text-decoration:line-through }
+.arch-row .btn.mini{ box-shadow:2px 2px 0 var(--ink) }
+
+.report-btn{ margin-top:1rem; width:100% }

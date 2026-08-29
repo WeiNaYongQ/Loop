@@ -1,0 +1,55 @@
+/* ═══════════ css/site.css — house rules · CTA band · footer · reveals ═══════════ */
+
+/* --- house rules --- */
+.rules{ padding:4.2rem 0 3.4rem }
+.kicker{ display:inline-block; font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; border:2px solid var(--ink); border-radius:999px; padding:.3rem .8rem; background:var(--card); margin-bottom:1rem }
+.section-title{ font-size:clamp(2rem, 5vw, 3.3rem); font-weight:800; margin-bottom:2.4rem; max-width:20ch }
+.section-title .u{ position:relative; white-space:nowrap }
+.section-title .u svg{ position:absolute; left:0; bottom:-9px; width:100%; height:10px }
+
+.rule{
+  display:grid; grid-template-columns:90px 1fr auto; gap:1.4rem; align-items:center;
+  padding:1.4rem .8rem; border-top:var(--line);
+  transition:background .25s, transform .2s;
+}
+.rule:last-of-type{ border-bottom:var(--line) }
+.rule:hover{ background:var(--acc); transform:translateX(8px) }
+.rule-num{ font-family:var(--display); font-weight:800; font-size:2.4rem; color:transparent; -webkit-text-stroke:2px var(--ink); transition:color .25s }
+.rule:hover .rule-num{ color:var(--ink); -webkit-text-stroke:0 }
+.rule h3{ font-size:1.3rem; margin-bottom:.2rem }
+.rule p{ color:var(--ink-60); max-width:58ch; transition:color .25s }
+.rule:hover p{ color:var(--ink) }
+.rule-tag{ font-family:var(--mono); font-size:.66rem; border:2px solid var(--ink); padding:.25rem .6rem; border-radius:999px; background:var(--card); white-space:nowrap }
+
+/* --- CTA band --- */
+.cta{ background:var(--sun); border-block:var(--line); text-align:center; padding:4.6rem 0; position:relative; overflow:hidden }
+.cta h2{ font-size:clamp(2rem, 6vw, 3.8rem); font-weight:800; margin-bottom:1.4rem }
+.cta .btn{ font-size:1.1rem; padding:.8rem 1.8rem }
+.cta .deco{ position:absolute; font-size:2.2rem; font-family:var(--display); font-weight:800; opacity:.8 }
+.cta .d1{ top:18%; left:9%; transform:rotate(-14deg) }
+.cta .d2{ bottom:16%; right:11%; transform:rotate(10deg) }
+.cta .d3{ top:24%; right:22%; transform:rotate(-6deg) }
+
+/* --- footer --- */
+footer{ background:var(--ink); color:var(--paper); padding:2.4rem 0 }
+footer .container{ display:flex; flex-wrap:wrap; gap:1rem 2rem; align-items:center; justify-content:space-between }
+.foot-logo{ font-size:1.4rem; font-weight:800 }
+.foot-logo .spark{ color:var(--coral) }
+footer .fine{ font-family:var(--mono); font-size:.7rem; opacity:.72 }
+
+/* --- scroll reveals --- */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1) }
+.reveal.in{ opacity:1; transform:none }
+
+/* --- responsive --- */
+@media (max-width: 980px){
+  .app-grid{ grid-template-columns:1fr }
+  .rule{ grid-template-columns:60px 1fr }
+  .rule-tag{ grid-column:2; justify-self:start }
+}
+@media (max-width: 640px){
+  .topnav{ order:3; width:100% }
+  .today-head{ gap:.8rem }
+  .heat-row{ grid-template-columns:56px repeat(7, 1fr) }
+  .sticker{ display:none }
+}
