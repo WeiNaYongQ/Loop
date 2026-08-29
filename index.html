@@ -17,7 +17,8 @@
   <link rel="stylesheet" href="css/pro.css">
   <link rel="stylesheet" href="css/stats.css">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icons/icon.svg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <script>
     try{ const t = JSON.parse(localStorage.getItem('loop.state.v1')).theme;
       if(t === 'night' || t === 'dusk') document.documentElement.setAttribute('data-theme', t); }catch(e){}
@@ -241,6 +242,33 @@
   </dialog>
 
   <div id="confettiLayer" aria-hidden="true"></div>
+
+  <!-- Pro Modal -->
+  <dialog id="proModal">
+    <h3>Loop Pro <span class="pro-price">$5 once</span></h3>
+    <p class="hint">pay once, forever yours — and it keeps the free version free.</p>
+    <ul class="pro-list">
+      <li>🏆 milestone badges — every streak you've ever survived</li>
+      <li>📅 month view — 30 days of your zigzag at a glance</li>
+      <li>🌆 dusk theme — a third way to see Loop</li>
+      <li>📤 CSV export — your data, spreadsheet-ready</li>
+      <li>💛 funds more ADHD-first features</li>
+    </ul>
+    <a class="btn btn-primary" id="buyLink" href="#" target="_blank" rel="noopener">get my key →</a>
+    <label class="field-label" for="proKey">already have a key?</label>
+    <div class="pro-key-row">
+      <input id="proKey" placeholder="paste the key from your receipt" autocomplete="off">
+      <button class="btn btn-primary" id="activateBtn">unlock</button>
+    </div>
+    <p class="pro-note" id="proNote"></p>
+    <span class="field-label">themes</span>
+    <div class="pick-row">
+      <button class="theme-dot" data-theme="day" style="background:#FFF9EC" title="day"></button>
+      <button class="theme-dot" data-theme="night" style="background:#17141F" title="night"></button>
+      <button class="theme-dot pro-only" data-theme="dusk" style="background:#232946" title="dusk (Pro)"></button>
+    </div>
+    <menu><button type="button" class="btn" id="proClose">close</button></menu>
+  </dialog>
 
   <!-- order matters: fx.js before extras.js and app.js -->
   <script src="js/storage.js"></script>

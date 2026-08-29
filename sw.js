@@ -1,7 +1,7 @@
-/* ═══════════ sw.js — offline cache (v0.7: install can't crash on missing files) ═══════════
+/* ═══════════ sw.js — offline cache (v0.8: added favicon.ico + proModal fix) ═══════════
    DEV RULE: bump CACHE whenever files change. */
 
-const CACHE = 'loop-v6';
+const CACHE = 'loop-v7';
 
 const ASSETS = [
   './', './index.html', './stats.html',
@@ -9,7 +9,7 @@ const ASSETS = [
   './css/mobile.css', './css/pro.css',
   './js/storage.js', './js/habits.js', './js/fx.js', './js/timer.js', './js/extras.js',
   './js/app.js', './js/stats.js', './js/report.js', './js/settings.js', './js/pro.js', './js/pwa.js',
-  './manifest.json', './icons/icon.svg'
+  './manifest.json', './icons/icon.svg', './favicon.ico'
 ];
 
 self.addEventListener('install', e => {
