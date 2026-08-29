@@ -3,150 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loop* — the receipts</title>
-  <script>
-    try{ const t = JSON.parse(localStorage.getItem('loop.state.v1')).theme;
-      if(t === 'night' || t === 'dusk') document.documentElement.setAttribute('data-theme', t); }catch(e){}
-  </script>
+  <title>Loop* | Analytics</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/mobile.css">
-  <link rel="stylesheet" href="css/pro.css">
-  <link rel="stylesheet" href="css/stats.css">
-  <link rel="icon" href="../favicon.ico">
-  <link rel="icon" type="image/svg+xml" href="../icons/icon.svg">
+  <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+  <div class="ticker"></div>
 
-  <div class="ambient" aria-hidden="true">
-    <svg class="sticker st1" width="62" height="62" viewBox="0 0 64 64"><path d="M32 4l7 17 18 2-13.5 12 4 18L32 44l-15.5 9 4-18L7 23l18-2z" fill="#FFC933" stroke="#272130" stroke-width="3" stroke-linejoin="round"/></svg>
-    <svg class="sticker st4" width="56" height="56" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="#1FBE9C" stroke="#272130" stroke-width="3"/><circle cx="23" cy="27" r="3.5" fill="#272130"/><circle cx="41" cy="27" r="3.5" fill="#272130"/><path d="M21 39 q11 10 22 0" fill="none" stroke="#272130" stroke-width="3.5" stroke-linecap="round"/></svg>
-  </div>
-
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <div class="half"><i>done beats perfect</i><b>✦</b><i>tiny counts</i><b>✦</b><i>progress, not streaks</i><b>✦</b><i>brains welcome</i><b>✦</b><i>no shame zone</i><b>✦</b><i>dopamine on tap</i><b>✦</b></div>
-      <div class="half"><i>done beats perfect</i><b>✦</b><i>tiny counts</i><b>✦</b><i>progress, not streaks</i><b>✦</b><i>brains welcome</i><b>✦</b><i>no shame zone</i><b>✦</b><i>dopamine on tap</i><b>✦</b></div>
+  <nav class="topbar">
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Dashboard</a></li>
+      <li><a href="stats.html" class="nav-link active">Analytics</a></li>
+      <li><a href="#" class="nav-link">Settings</a></li>
+    </ul>
+    <div class="flex items-center gap-2">
+      <button class="btn btn-ghost" id="theme-btn">??</button>
+      <a href="#" class="btn btn-primary" data-open-pro>Pro</a>
     </div>
-  </div>
+  </nav>
 
-  <header class="topbar">
-    <div class="container">
-      <a class="logo" href="index.html">Loop<span class="spark">*</span> <span class="pill">beta v0.5</span></a>
-      <nav class="topnav">
-        <a href="index.html">Board</a>
-        <a href="stats.html" class="active">Stats</a>
-      </nav>
-      <button id="proBtn" class="pro-btn" data-open-pro title="Loop Pro — $5 once">🔒 Pro</button>
-      <button id="calmBtn" class="icon-btn" aria-pressed="false" title="calm mode">🌿</button>
-      <button id="themeBtn" class="icon-btn" title="switch day / night">🌙</button>
-      <button id="soundBtn" class="icon-btn" aria-pressed="true" title="toggle sounds">🔊</button>
-    </div>
-  </header>
-
-  <main class="container stats-main">
-
-    <header class="stats-head">
-      <div>
-        <span class="kicker">your analytics</span>
-        <h1>The Receipts 🧾</h1>
+  <main class="main-grid">
+    
+    <!-- Key Metrics -->
+    <section class="card area-stats">
+      <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+        <h3 class="mono">TOTAL STREAK</h3>
+        <span class="text-mint">??</span>
       </div>
-      <span class="range" id="range"></span>
-    </header>
+      <div class="timer-display mono">127<span class="text-dust" style="font-size: 1.5rem;">d</span></div>
+      <p class="text-dust">Current run</p>
+    </section>
 
-    <section class="panel">
-      <div class="report-grid">
-        <div class="big-ring-wrap" title="week completion">
-          <svg class="big-ring" viewBox="0 0 200 200">
-            <circle class="bg" cx="100" cy="100" r="84"/>
-            <circle class="fg" id="bigRing" cx="100" cy="100" r="84"/>
-          </svg>
-          <div class="big-label"><span id="bigPct">0%</span></div>
-        </div>
-        <div class="stat-boxes">
-          <div class="stat-box"><div class="stat-value" id="vChecks">0</div><div class="stat-label">checks this week</div></div>
-          <div class="stat-box"><div class="stat-value" id="vStreak">0</div><div class="stat-label">best streak</div></div>
-          <div class="stat-box"><div class="stat-value" id="vDay">—</div><div class="stat-label">best day</div></div>
-        </div>
+    <section class="card area-stats">
+      <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+        <h3 class="mono">COMPLETION RATE</h3>
+        <span class="text-mint">??</span>
       </div>
+      <div class="timer-display mono">84<span class="text-dust" style="font-size: 1.5rem;">%</span></div>
+      <p class="text-dust">This week</p>
+    </section>
 
-      <div class="bars" id="bars"></div>
-      <p class="quote-line" id="quoteLine"></p>
+    <section class="card area-stats">
+      <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
+        <h3 class="mono">FOCUS TIME</h3>
+        <span class="text-mint">??</span>
+      </div>
+      <div class="timer-display mono">47<span class="text-dust" style="font-size: 1.5rem;">h</span></div>
+      <p class="text-dust">This month</p>
+    </section>
 
-      <div class="report-actions">
-        <button class="btn btn-primary" id="dlBtn">⬇ download as image</button>
-        <span class="share-hint">optional — for posting. "built for my ADHD brain" is the whole marketing plan.</span>
+    <!-- Monthly Matrix -->
+    <section class="card" style="grid-column: span 12;">
+      <h3 style="margin-bottom: 1rem;">Monthly Activity</h3>
+      <div class="heatmap" style="grid-template-columns: repeat(31, 1fr);">
+        <!-- Generated dynamically -->
+        <div class="heatmap-cell l3">1</div>
+        <div class="heatmap-cell l4">2</div>
+        <div class="heatmap-cell l2">3</div>
+        <div class="heatmap-cell l5">4</div>
+        <div class="heatmap-cell l3">5</div>
+        <div class="heatmap-cell l1">6</div>
+        <div class="heatmap-cell l4">7</div>
+        <div class="heatmap-cell l3">8</div>
+        <div class="heatmap-cell l4">9</div>
+        <div class="heatmap-cell l2">10</div>
+        <div class="heatmap-cell l5">11</div>
+        <div class="heatmap-cell l3">12</div>
+        <div class="heatmap-cell l4">13</div>
+        <div class="heatmap-cell l1">14</div>
+        <div class="heatmap-cell l3">15</div>
+        <div class="heatmap-cell l4">16</div>
+        <div class="heatmap-cell l2">17</div>
+        <div class="heatmap-cell l5">18</div>
+        <div class="heatmap-cell l3">19</div>
+        <div class="heatmap-cell l4">20</div>
+        <div class="heatmap-cell l1">21</div>
+        <div class="heatmap-cell l3">22</div>
+        <div class="heatmap-cell l4">23</div>
+        <div class="heatmap-cell l2">24</div>
+        <div class="heatmap-cell l5">25</div>
+        <div class="heatmap-cell l3">26</div>
+        <div class="heatmap-cell l4">27</div>
+        <div class="heatmap-cell l1">28</div>
+        <div class="heatmap-cell l3">29</div>
+        <div class="heatmap-cell l4">30</div>
+        <div class="heatmap-cell l2">31</div>
       </div>
     </section>
 
-    <section class="panel">
-      <h2>🏆 Habit leaderboard <span class="chip">this week</span></h2>
-      <div id="lb"></div>
+    <!-- Performance Bars -->
+    <section class="card" style="grid-column: span 6;">
+      <h3 style="margin-bottom: 1rem;">Protocol Performance</h3>
+      
+      <div style="margin-bottom: 1rem;">
+        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
+          <span>Meditation</span>
+          <span class="mono text-mint">92%</span>
+        </div>
+        <div style="height: 6px; background: var(--deep-space); border-radius: 3px; overflow: hidden;">
+          <div style="height: 100%; width: 92%; background: var(--mint-laser);"></div>
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
+          <span>Deep Work</span>
+          <span class="mono text-mint">78%</span>
+        </div>
+        <div style="height: 6px; background: var(--deep-space); border-radius: 3px; overflow: hidden;">
+          <div style="height: 100%; width: 78%; background: var(--mint-laser);"></div>
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
+          <span>Reading</span>
+          <span class="mono text-mint">65%</span>
+        </div>
+        <div style="height: 6px; background: var(--deep-space); border-radius: 3px; overflow: hidden;">
+          <div style="height: 100%; width: 65%; background: var(--mint-laser);"></div>
+        </div>
+      </div>
     </section>
 
-    <section class="panel">
-      <h2>♾️ All-time</h2>
-      <div class="tiles">
-        <div class="tile"><div class="stat-value" id="tChecks">0</div><div class="stat-label">total checks</div></div>
-        <div class="tile"><div class="stat-value" id="tStreak">0</div><div class="stat-label">longest streak</div></div>
-        <div class="tile"><div class="stat-value" id="tPerfect">0</div><div class="stat-label">perfect days</div></div>
-        <div class="tile"><div class="stat-value" id="tHabits">0</div><div class="stat-label">active habits</div></div>
+    <!-- Weekly Chart -->
+    <section class="card" style="grid-column: span 6;">
+      <h3 style="margin-bottom: 1rem;">Weekly Velocity</h3>
+      <div style="height: 200px; display: flex; align-items: flex-end; gap: 8px; padding: 1rem;">
+        <div style="flex: 1; background: var(--mint-laser); height: 60%; border-radius: 4px 4px 0 0;"></div>
+        <div style="flex: 1; background: var(--mint-laser); height: 80%; border-radius: 4px 4px 0 0;"></div>
+        <div style="flex: 1; background: var(--mint-laser); height: 45%; border-radius: 4px 4px 0 0;"></div>
+        <div style="flex: 1; background: var(--mint-laser); height: 90%; border-radius: 4px 4px 0 0;"></div>
+        <div style="flex: 1; background: var(--mint-laser); height: 55%; border-radius: 4px 4px 0 0;"></div>
+        <div style="flex: 1; background: var(--mint-laser); height: 30%; border-radius: 4px 4px 0 0;"></div>
+        <div style="flex: 1; background: var(--mint-laser); height: 70%; border-radius: 4px 4px 0 0;"></div>
+      </div>
+      <div class="flex justify-between" style="padding: 0 1rem; color: var(--dust); font-size: 0.8rem;">
+        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
       </div>
     </section>
 
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="foot-logo display">Loop<span class="spark">*</span></div>
-      <p class="fine">the receipts page · your data still never leaves this browser</p>
-      <div class="data-bar">
-        <button class="btn mini" id="exportBtn">⬇ save backup</button>
-        <button class="btn mini" id="importBtn">⬆ restore backup</button>
-        <input type="file" id="importFile" accept=".json,application/json" hidden>
-        <button class="btn mini" id="csvBtn">📤 CSV</button>
-        <button class="btn mini danger" id="wipeBtn">start fresh</button>
-      </div>
-    </div>
-  </footer>
-
-  <dialog id="proModal">
-    <h3>Loop Pro <span class="pro-price">$5 once</span></h3>
-    <p class="hint">pay once, forever yours — and it keeps the free version free.</p>
-    <ul class="pro-list">
-      <li>🏆 milestone badges — every streak you've ever survived</li>
-      <li>📅 month view — 30 days of your zigzag at a glance</li>
-      <li>🌆 dusk theme — a third way to see Loop</li>
-      <li>📤 CSV export — your data, spreadsheet-ready</li>
-      <li>💛 funds more ADHD-first features</li>
-    </ul>
-    <a class="btn btn-primary" id="buyLink" href="#" target="_blank" rel="noopener">get my key →</a>
-    <label class="field-label" for="proKey">already have a key?</label>
-    <div class="pro-key-row">
-      <input id="proKey" placeholder="paste the key from your receipt" autocomplete="off">
-      <button class="btn btn-primary" id="activateBtn">unlock</button>
-    </div>
-    <p class="pro-note" id="proNote"></p>
-    <span class="field-label">themes</span>
-    <div class="pick-row">
-      <button class="theme-dot" data-theme="day" style="background:#FFF9EC" title="day"></button>
-      <button class="theme-dot" data-theme="night" style="background:#17141F" title="night"></button>
-      <button class="theme-dot pro-only" data-theme="dusk" style="background:#232946" title="dusk (Pro)"></button>
-    </div>
-    <menu><button type="button" class="btn" id="proClose">close</button></menu>
+  <dialog id="pro-modal">
+    <h2 class="text-mint">Loop* Pro</h2>
+    <p class="text-dust" style="margin: 1rem 0;">Unlock advanced analytics, unlimited habits, and cloud sync.</p>
+    <button class="btn btn-primary" style="width: 100%;">Upgrade - $4/mo</button>
+    <button class="btn" onclick="document.getElementById('pro-modal').close()" style="width: 100%; margin-top: 0.5rem;">Maybe Later</button>
   </dialog>
-  
-  <script src="js/storage.js"></script>
-  <script src="js/habits.js"></script>
-  <script src="js/fx.js"></script>
-  <script src="js/report.js"></script>
+
+  <script src="js/app.js"></script>
   <script src="js/stats.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/pro.js"></script>
-  <script src="js/pwa.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+      
+      document.querySelectorAll('[data-open-pro]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById('pro-modal').showModal();
+        });
+      });
+    });
+  </script>
 </body>
 </html>
