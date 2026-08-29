@@ -231,20 +231,21 @@
         <option value="3x">3× a week (flexible)</option>
       </select>
 
+      <label class="field-label" for="hNote">why it matters (optional)</label>
+      <textarea id="hNote" rows="2" maxlength="120" placeholder="future me will feel calmer"></textarea>
       <menu>
         <button type="button" class="btn" id="cancelBtn">cancel</button>
         <button type="submit" class="btn btn-primary">add it ✓</button>
       </menu>
     </form>
-      <label class="field-label" for="hNote">why it matters (optional)</label>
-      <textarea id="hNote" rows="2" maxlength="120" placeholder="future me will feel calmer"></textarea>
   </dialog>
 
   <div id="confettiLayer" aria-hidden="true"></div>
 
-  <!-- order matters: app.js last -->
+  <!-- order matters: fx.js before extras.js and app.js -->
   <script src="js/storage.js"></script>
   <script src="js/habits.js"></script>
+  <script src="js/fx.js"></script>
   <script src="js/timer.js"></script>
   <script src="js/extras.js"></script>
   <script src="js/app.js"></script>
