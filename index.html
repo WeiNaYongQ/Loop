@@ -35,15 +35,107 @@
     </div>
   </nav>
 
-  <!-- Main Bento Grid -->
-  <main class="main-grid">
-    
-    <!-- Spotlight Hero -->
-    <section class="card spotlight area-spotlight">
-      <div class="spotlight-content">
-        <h2>Ready to focus?</h2>
-        <p class="text-dust">Start a session to track your habits and productivity</p>
-      </div>
+  <header class="topbar">
+    <div class="container">
+      <a class="logo" href="#app">Loop<span class="spark">*</span> <span class="pill">beta v0.5</span></a>
+      <nav class="topnav">
+        <a href="#app">Board</a>
+        <a href="#focus">Focus</a>
+        <a href="stats.html">Stats</a>
+        <a href="#why">Why Loop</a>
+      </nav>
+        <button id="installBtn" class="icon-btn" hidden title="install Loop on this device">📲</button>
+        <button id="proBtn" class="pro-btn" data-open-pro title="Loop Pro — $5 once">🔒 Pro</button>
+        <button id="calmBtn" class="icon-btn" aria-pressed="false" title="calm mode — hides motion & decorations">🌿</button>
+        <button id="themeBtn" class="icon-btn" title="switch day / night">🌙</button>
+        <button id="soundBtn" class="icon-btn" aria-pressed="true" title="toggle sounds">🔊</button>
+        <button id="reminderBtn" class="icon-btn" aria-pressed="false" title="set reminders">🔔</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══════════ THE APP ══════════ -->
+    <section class="container app-grid" id="app">
+
+      <section class="panel today">
+        <div class="today-head">
+          <div>
+            <h1>Today</h1>
+            <p class="today-date" id="todayDate"></p>
+          </div>
+          <div class="ring-wrap" title="today's progress">
+            <svg class="ring" viewBox="0 0 76 76">
+              <circle class="bg" cx="38" cy="38" r="30"/>
+              <circle class="fg" id="ringFg" cx="38" cy="38" r="30" stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+            </svg>
+            <span class="ring-label" id="ringLabel">0/0</span>
+          </div>
+        </div>
+
+        <div class="battery">
+          <span class="battery-label">⚡ Energy check-in</span>
+          <div class="battery-cells" id="batteryCells">
+            <button class="bcell" aria-label="energy 1 of 5"></button>
+            <button class="bcell" aria-label="energy 2 of 5"></button>
+            <button class="bcell" aria-label="energy 3 of 5"></button>
+            <button class="bcell" aria-label="energy 4 of 5"></button>
+            <button class="bcell" aria-label="energy 5 of 5"></button>
+          </div>
+          <span class="battery-note" id="batteryNote"></span>
+        </div>
+
+        <ul class="habit-list" id="habits-list"></ul>
+        <button id="addBtn" class="add-row">+ add a tiny habit</button>
+        <button id="archiveBtn" class="archive-toggle" hidden>🗄 archive (0)</button>
+        <div class="brain-dump">
+          <label for="brainDump" class="bd-label">🧠 clear the RAM (brain dump)</label>
+          <textarea id="brainDump" rows="3" placeholder="intrusive thoughts, to-dos, random ideas... they're safe here."></textarea>
+        </div>
+        <div id="archiveTray" class="archive-tray" hidden></div>
+        <div id="doneBanner" class="done-banner" hidden></div>
+      </section>
+
+      <aside class="side">
+
+        <section class="panel spotlight">
+          <h2>🎯 Just one thing <span class="chip">anti-overwhelm</span></h2>
+          <div class="spot-card" id="spotCard"></div>
+          <div class="spot-actions">
+            <button class="btn btn-primary" id="spotDone">Done ✓</button>
+            <button class="btn" id="spotShuffle">Shuffle 🔀</button>
+          </div>
+        </section>
+
+        <section class="panel timer" id="focus">
+          <h2>⏳ Focus timer <span class="chip">time blindness fix</span></h2>
+          <div class="timer-body">
+            <div class="timer-orb">
+              <svg class="timer-ring" viewBox="0 0 120 120">
+                <circle class="bg" cx="60" cy="60" r="54"/>
+                <circle class="fg" id="tRing" cx="60" cy="60" r="54" stroke-dasharray="339.3" stroke-dashoffset="339.3"/>
+              </svg>
+              <span class="timer-digits" id="timer-display">15:00</span>
+            </div>
+            <div class="timer-presets">
+              <button class="preset" data-min="10">10 min</button>
+              <button class="preset active" data-min="15">15 min</button>
+              <button class="preset" data-min="25">25 min</button>
+            </div>
+            <div class="timer-controls">
+              <button class="btn btn-primary" id="tStart">Start</button>
+              <button class="btn" id="tReset">Reset</button>
+            </div>
+            <p class="whisper" id="tWhisper">press start when you're-ish ready</p>
+          </div>
+        </section>
+
+        <section class="panel week">
+          <h2>🗓️ Last 7 days</h2>
+          <div class="heatmap" id="heatmap"></div>
+          <a class="btn mini report-btn" href="stats.html">📊 weekly report</a>
+        </section>
+
+      </aside>
     </section>
 
     <!-- Timer Orb -->

@@ -600,6 +600,7 @@
 .timer-ring .fg {
   stroke: var(--mint);
   stroke-dasharray: 339.3;
+  stroke-dashoffset: 339.3;
   transition: stroke-dashoffset 0.9s linear;
 }
 
