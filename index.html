@@ -138,131 +138,40 @@
       </aside>
     </section>
 
-    <!-- Timer Orb -->
-    <section class="card area-timer card-hover">
-      <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
-        <h3 class="mono">FOCUS TIMER</h3>
-        <span class="text-mint mono" id="session-count">0</span>
-      </div>
-      
-      <div class="timer-orb">
-        <div class="timer-ring"></div>
-        <div class="timer-display mono" id="timer-display">25:00</div>
-      </div>
-      
-      <div class="timer-controls">
-        <button class="preset-btn active" data-min="25">25m</button>
-        <button class="preset-btn" data-min="5">5m</button>
-        <button class="preset-btn" data-min="15">15m</button>
-        <button class="preset-btn" data-min="45">45m</button>
-      </div>
-      
-      <div class="flex gap-2" style="margin-top: 1rem;">
-        <button class="btn btn-primary" style="flex:1" id="start-timer">Start</button>
-        <button class="btn" style="flex:1" id="reset-timer">Reset</button>
-      </div>
-    </section>
-
-    <!-- Habits List -->
-    <section class="card area-habits">
-      <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
-        <h3>Daily Protocols</h3>
-        <button class="btn btn-ghost" onclick="showComposer()">+ Add</button>
-      </div>
-      
-      <div id="habits-list">
-        <!-- Dynamic Content -->
-        <div class="habit-strip">
-          <div class="habit-check checked">?</div>
-          <div class="habit-info">
-            <div class="habit-name">Morning Meditation</div>
-            <div class="habit-streak mono">32 day streak</div>
-          </div>
-        </div>
-        
-        <div class="habit-strip">
-          <div class="habit-check"></div>
-          <div class="habit-info">
-            <div class="habit-name">Deep Work Session</div>
-            <div class="habit-streak mono">18 day streak</div>
-          </div>
-        </div>
-        
-        <div class="habit-strip">
-          <div class="habit-check"></div>
-          <div class="habit-info">
-            <div class="habit-name">Read 30 Minutes</div>
-            <div class="habit-streak mono">5 day streak</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Progress Gauges -->
-      <div class="flex gap-4" style="margin-top: 2rem; justify-content: center;">
-        <div class="gauge">
-          <svg class="gauge-svg" viewBox="0 0 120 120">
-            <circle class="gauge-bg" cx="60" cy="60" r="54"></circle>
-            <circle class="gauge-fill" cx="60" cy="60" r="54"></circle>
-          </svg>
-          <div class="gauge-text mono">78%</div>
-        </div>
-        <div class="gauge">
-          <svg class="gauge-svg" viewBox="0 0 120 120">
-            <circle class="gauge-bg" cx="60" cy="60" r="54"></circle>
-            <circle class="gauge-fill" cx="60" cy="60" r="54"></circle>
-          </svg>
-          <div class="gauge-text mono">Today</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Energy Check-in -->
-    <section class="card area-energy">
-      <h3 style="margin-bottom: 1rem;">Energy Levels</h3>
-      <div class="energy-bar">
-        <div class="energy-segment filled"></div>
-        <div class="energy-segment filled"></div>
-        <div class="energy-segment filled"></div>
-        <div class="energy-segment"></div>
-        <div class="energy-segment"></div>
-      </div>
-      <p class="text-dust" style="margin-top: 1rem; font-size: 0.9rem;">Click segments to update</p>
-    </section>
-
-    <!-- Activity Heatmap -->
-    <section class="card area-stats">
-      <div class="flex justify-between items-center" style="margin-bottom: 1rem;">
-        <h3>Activity Matrix</h3>
-        <span class="text-mint mono">7 Days</span>
-      </div>
-      <div class="heatmap">
-        <div class="heatmap-cell l3">M</div>
-        <div class="heatmap-cell l4">T</div>
-        <div class="heatmap-cell l2">W</div>
-        <div class="heatmap-cell l5">T</div>
-        <div class="heatmap-cell l3">F</div>
-        <div class="heatmap-cell l1">S</div>
-        <div class="heatmap-cell l4">S</div>
-      </div>
-    </section>
-
-    <!-- Brain Dump -->
-    <section class="card area-stats">
-      <h3 style="margin-bottom: 1rem;">Neural Cache</h3>
-      <textarea class="brain-dump" placeholder="Dump thoughts here..."></textarea>
-      <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;">Commit to Memory</button>
-    </section>
-
   </main>
 
+  <!-- Confetti Layer -->
+  <div id="confettiLayer"></div>
+
   <!-- Composer Dialog -->
-  <dialog id="composer-dialog">
-    <h3 style="margin-bottom: 1rem;">New Protocol</h3>
-    <input type="text" class="input" placeholder="Name..." style="margin-bottom: 1rem;">
-    <div class="flex gap-2">
-      <button class="btn btn-primary" onclick="addHabit()">Create</button>
-      <button class="btn" onclick="closeComposer()">Cancel</button>
-    </div>
+  <dialog id="composer">
+    <h3>New tiny habit ✨</h3>
+    <p class="hint">keep it stupid small</p>
+    <form id="habitForm">
+      <label class="field-label" for="hName">what's the thing?</label>
+      <input id="hName" autocomplete="off" placeholder="e.g. one push-up, open journal...">
+      
+      <label class="field-label">emoji vibe</label>
+      <div id="emojiRow" class="pick-row"></div>
+      
+      <label class="field-label">color</label>
+      <div id="colorRow" class="pick-row"></div>
+      
+      <label class="field-label" for="hFreq">how often?</label>
+      <select id="hFreq">
+        <option value="daily">every day</option>
+        <option value="weekdays">weekdays only</option>
+        <option value="3x">3× a week</option>
+      </select>
+      
+      <label class="field-label" for="hNote">note (optional)</label>
+      <input id="hNote" placeholder="tiny detail or why...">
+      
+      <menu>
+        <button type="button" class="btn" id="cancelBtn">nah</button>
+        <button type="submit" class="btn btn-primary">add it ✓</button>
+      </menu>
+    </form>
   </dialog>
 
   <!-- Pro Modal -->
@@ -274,44 +183,23 @@
   </dialog>
 
   <!-- Scripts -->
-  <script src="js/app.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/extras.js"></script>
   <script src="js/reminders.js"></script>
   <script src="js/reminder-ui.js"></script>
+  <script src="js/pro.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/app.js"></script>
   <script>
-    // Initialize
+    // Initialize PWA
     document.addEventListener('DOMContentLoaded', () => {
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
       }
-      
-      // Theme Toggle
-      document.getElementById('theme-btn').addEventListener('click', () => {
-        document.documentElement.setAttribute('data-theme', 
-          document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-        );
-      });
-      
-      // Pro Modal
-      document.querySelectorAll('[data-open-pro]').forEach(el => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          document.getElementById('pro-modal').showModal();
-        });
-      });
     });
-
-    function showComposer() {
-      document.getElementById('composer-dialog').showModal();
-    }
-
-    function closeComposer() {
-      document.getElementById('composer-dialog').close();
-    }
-
-    function addHabit() {
-      // Implementation in app.js
-      closeComposer();
-    }
   </script>
 </body>
 </html>
