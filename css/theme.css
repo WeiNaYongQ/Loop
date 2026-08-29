@@ -77,7 +77,7 @@ body.calm .spark,
 body.calm .flame.hot,
 body.calm .spot-emoji { animation: none; }
 body.calm .rule:hover { transform: none; }
-body.calm .habit:hover { transform: none; box-shadow: var(--shadow-sm); }
+body.calm .habit-strip:hover { transform: none; box-shadow: var(--shadow-sm); }
 body.calm #calmBtn { background: var(--mint); color: var(--void); }
 
 /* --- 03 · Night/Dusk Theme Support --- */
@@ -131,8 +131,8 @@ textarea#hNote {
   transition: opacity 0.15s, background 0.15s;
 }
 
-.habit:hover .edit, .habit:focus-within .edit,
-.habit:hover .del, .habit:focus-within .del {
+.habit-strip:hover .edit, .habit-strip:focus-within .edit,
+.habit-strip:hover .del, .habit-strip:focus-within .del {
   opacity: 1;
 }
 

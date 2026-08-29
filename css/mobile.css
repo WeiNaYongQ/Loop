@@ -44,6 +44,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100% }
 
   /* timer */
   .timer-ring-wrap{ width:150px; height:150px }
+  .timer-orb{ width:150px; height:150px }
   .timer-digits{ font-size:1.7rem }
   .preset{ padding:.45rem .9rem; font-size:.8rem }
 
@@ -88,6 +89,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100% }
   .panel{ padding:1.3rem }
   .bcell{ width:30px; height:20px }
   .timer-ring-wrap{ width:164px; height:164px }
+  .timer-orb{ width:164px; height:164px }
 }
 
 /* 3 · "desktop mode" on phones renders ~980px wide and shrinks it all.
