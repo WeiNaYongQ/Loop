@@ -1,6 +1,31 @@
 /* ═══════════ css/stats.css — the receipts page ═══════════ */
 
-.stats-main{ padding:2.4rem 0 3.4rem; display:grid; gap:1.6rem }
+/* Main grid layout for stats page */
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  padding: 2.5rem 0 3.5rem;
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Card component */
+.card {
+  background: var(--near-void);
+  border: var(--line);
+  border-radius: var(--r-card);
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* Area stats cards - span 4 columns each */
+.area-stats {
+  grid-column: span 4;
+}
+
 .stats-head{ display:flex; align-items:end; gap:1rem; flex-wrap:wrap }
 .stats-head h1{ font-size:clamp(2.2rem, 5vw, 3.2rem); font-weight:800 }
 .range{ margin-left:auto; font-family:var(--mono); font-size:.8rem; color:var(--ink-60); letter-spacing:.08em; padding-bottom:.4rem }
