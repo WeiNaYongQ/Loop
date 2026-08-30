@@ -32,11 +32,17 @@
   /* Border radius */
   --r: 4px;
   --r-sm: 4px;
+  --r-card: 12px;
+  --r-pill: 9999px;
   
   /* Typography - Inter for UI, Geist Mono for numbers */
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
   --display: 'Inter', system-ui, -apple-system, sans-serif;
   --body: 'Inter', system-ui, -apple-system, sans-serif;
   --mono: 'Geist Mono', 'Space Mono', monospace;
+  
+  /* Additional borders */
+  --line-dashed: 1px dashed rgba(255, 255, 255, 0.15);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
